@@ -10,11 +10,11 @@ import { Button, ButtonSize } from './type'
 export default defineComponent({
     props: {
         color: {
-            type: Object as PropType<Button>,
+            type: String as PropType<Button>,
             default: 'primary',
         },
         size: {
-            type: Object as PropType<ButtonSize>,
+            type: String as PropType<ButtonSize>,
             default: 'small'
         },
         round: {
