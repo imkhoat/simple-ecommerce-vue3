@@ -9,7 +9,9 @@
     "lint": "eslint --ext .ts,.vue --ignore-path .gitignore --fix src",
     "format": "prettier .  --write",
     "stylelint": "stylelint \"**/*.scss\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "vue": "^3.2.25"
@@ -20,10 +22,12 @@
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
     "@vitejs/plugin-vue": "^2.3.0",
+    "@vue/test-utils": "^2.0.0-rc.19",
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-vue": "^8.5.0",
     "husky": "^7.0.4",
+    "jsdom": "^19.0.0",
     "prettier": "2.6.1",
     "stylelint": "^14.6.1",
     "stylelint-config-prettier-scss": "0.0.1",
@@ -31,6 +35,7 @@
     "stylelint-config-standard-scss": "^3.0.0",
     "typescript": "^4.5.4",
     "vite": "^2.9.0",
+    "vitest": "^0.8.4",
     "vue-tsc": "^0.29.8"
   }
 }
