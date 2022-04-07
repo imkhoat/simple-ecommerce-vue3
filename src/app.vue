@@ -19,5 +19,6 @@ export default defineComponent({
 body {
   margin: 0;
   font-family: "Source Sans Pro", sans-serif;
+  color: #111827;
 }
 </style>
