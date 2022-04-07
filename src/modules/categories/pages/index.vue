@@ -13,62 +13,17 @@
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
 import { ProductItem } from '../../../shared/types/category'
+import { useProduct } from '../../../shared/composables/useProduct'
+
 import SCategoryCard from '../../../shared/components/molecules/s-category-card/s-category-card.vue'
+
 export default defineComponent({
     components: {
         SCategoryCard,
     },
     setup() {
-        const products = reactive<ProductItem[]>([{
-            images: ['https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg'],
-            title: 'MEN Striped Short Sleeve T-Shirt',
-            price: 489,
-            amount: 10,
-            code: 'COL01',
-            description: 'A relaxed T-shirt with bold stripes for a signature JWA style.'
-        }, {
-            images: ['https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg'],
-            title: 'MEN Striped Short Sleeve T-Shirt',
-            price: 489,
-            amount: 10,
-            code: 'COL01',
-            description: 'A relaxed T-shirt with bold stripes for a signature JWA style.'
-        }, {
-            images: ['https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg'],
-            title: 'MEN Striped Short Sleeve T-Shirt',
-            price: 489,
-            amount: 10,
-            code: 'COL01',
-            description: 'A relaxed T-shirt with bold stripes for a signature JWA style.'
-        }, {
-            images: ['https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg'],
-            title: 'MEN Striped Short Sleeve T-Shirt',
-            price: 489,
-            amount: 10,
-            code: 'COL01',
-            description: 'A relaxed T-shirt with bold stripes for a signature JWA style.'
-        }, {
-            images: ['https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg'],
-            title: 'MEN Striped Short Sleeve T-Shirt',
-            price: 489,
-            amount: 10,
-            code: 'COL01',
-            description: 'A relaxed T-shirt with bold stripes for a signature JWA style.'
-        }, {
-            images: ['https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg'],
-            title: 'MEN Striped Short Sleeve T-Shirt',
-            price: 489,
-            amount: 10,
-            code: 'COL01',
-            description: 'A relaxed T-shirt with bold stripes for a signature JWA style.'
-        }, {
-            images: ['https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg'],
-            title: 'MEN Striped Short Sleeve T-Shirt',
-            price: 489,
-            amount: 10,
-            code: 'COL01',
-            description: 'A relaxed T-shirt with bold stripes for a signature JWA style.'
-        }])
+        const { getProducts } = useProduct()
+        const products = reactive<ProductItem[]>(getProducts())
 
         return { products }
     }
@@ -77,5 +32,17 @@ export default defineComponent({
 <style>
 .page-category {
     padding: 24px;
+    background-color: rgb(249, 250, 251);
+}
+.page-category .categories {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    white-space: nowrap;
+    margin-top: 24px;
+}
+.page-category .categories .item {
+    flex-shrink: 1;
+    max-width: 550px;
 }
 </style>

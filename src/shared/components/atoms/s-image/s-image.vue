@@ -1,5 +1,5 @@
 <template>
-    <img class="s-image" :src="src" />
+    <div class="s-image" :style="`background-image: url(${src});`" />
 </template>
 <script setup lang="ts">
 const props = defineProps({
@@ -13,5 +13,8 @@ const props = defineProps({
 .s-image {
     width: 100%;
     height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 </style>

@@ -20,17 +20,4 @@ body {
   margin: 0;
   font-family: "Source Sans Pro", sans-serif;
 }
-.home-page .categories {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 24px;
-  white-space: nowrap;
-  margin-top: 24px;
-}
-.home-page .categories .item {
-  max-width: 350px;
-}
 </style>
