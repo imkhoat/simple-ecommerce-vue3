@@ -1,5 +1,5 @@
 <template>
-    <div class="s-category-card">
+    <s-link :link="productUrl" class="s-category-card">
         <div class="gallery">
             <s-image
                 src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
@@ -13,21 +13,14 @@
             <s-button color="secondary">More info</s-button>
             <s-button>Add to cart</s-button>
         </div>
-    </div>
+    </s-link>
 </template>
 <script lang="ts">
 import SImage from '../../atoms/s-image/s-image.vue'
 import SButton from '../../atoms/s-button/s-button.vue'
 import SLink from '../../atoms/s-link/s-link.vue'
+import { ProductItem } from '../../../../shared/types/category'
 
-interface ProductItem {
-    images: String[],
-    title: String,
-    price: Number,
-    amount: Number,
-    slug: String,
-    description: String
-}
 
 import { computed, defineComponent, PropType } from 'vue'
 export default defineComponent({
@@ -52,7 +45,11 @@ export default defineComponent({
             return props.item?.description || '10% cotton nguyen chiec, khong tap khuan'
         })
 
-        return { productImage, productTitle, productDescription }
+        const productUrl = computed(() => {
+            return `/product-detail/${props.item?.code}`
+        })
+
+        return { productImage, productTitle, productDescription, productUrl }
     }
 })
 </script>
@@ -85,6 +82,9 @@ export default defineComponent({
 .s-category-card .info .description {
     font-size: 16px;
     line-height: 16px;
+    max-height: calc(var(--lh) * var(3));
+    text-overflow: ellipsis;
+    overflow: hidden;
     padding: 0;
     margin: 0;
 }
@@ -93,6 +93,7 @@ export default defineComponent({
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    
     gap: 8px;
 }
 </style>
