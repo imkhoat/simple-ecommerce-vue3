@@ -32,6 +32,7 @@
     "husky": "^7.0.4",
     "jsdom": "^19.0.0",
     "prettier": "2.6.1",
+    "sass": "^1.50.0",
     "stylelint": "^14.6.1",
     "stylelint-config-prettier-scss": "0.0.1",
     "stylelint-config-standard": "^25.0.0",

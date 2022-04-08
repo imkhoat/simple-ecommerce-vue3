@@ -13,7 +13,6 @@ import { useCartStore } from '../../../shared/stores/cart'
 import { CartItem } from '../../../shared/types/category'
 
 import SButton from '../../../shared/components/atoms/s-button/s-button.vue'
-import STextbox from '../../../shared/components/atoms/s-textbox/s-textbox.vue'
 import SQuantityControl from '../../../shared/components/molecules/s-quantity-control/s-quantity-control.vue'
 export default defineComponent({
     props: {
