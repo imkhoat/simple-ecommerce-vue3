@@ -2,7 +2,11 @@
     <div class="product-cart-item">
         <h6 class="name">{{ productName }}</h6>
         <div class="amount">
-            <s-quantity-control :quantity="quantity" @increase="onIncreaseQuantity" @decrease="onDecreaseQuantity"></s-quantity-control>
+            <s-quantity-control
+                :quantity="quantity"
+                @increase="onIncreaseQuantity"
+                @decrease="onDecreaseQuantity"
+            ></s-quantity-control>
         </div>
         <strong class="price">{{ totalPriceByText }}</strong>
     </div>
@@ -11,9 +15,11 @@
 import { defineComponent, PropType, computed } from 'vue'
 import { useCartStore } from '../../../shared/stores/cart'
 import { CartItem } from '../../../shared/types/category'
+import { usePrice } from '../../../shared/composables/usePrice'
 
 import SButton from '../../../shared/components/atoms/s-button/s-button.vue'
 import SQuantityControl from '../../../shared/components/molecules/s-quantity-control/s-quantity-control.vue'
+
 export default defineComponent({
     props: {
         item: {
@@ -26,13 +32,14 @@ export default defineComponent({
     },
     setup(props) {
         const cart = useCartStore()
+        const { formatPrice } = usePrice()
 
         const productName = computed(() => {
             return props.item?.product.title
         })
 
         const quantity = computed(() => {
-            return props.item?.quantity  as number
+            return props.item?.quantity as number
         })
 
         const totalPrice = computed(() => {
@@ -42,7 +49,7 @@ export default defineComponent({
         })
 
         const totalPriceByText = computed(() => {
-            return (new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'USD' }).format(totalPrice.value))
+            return formatPrice(totalPrice.value)
         })
 
         const onIncreaseQuantity = () => {
@@ -72,17 +79,17 @@ export default defineComponent({
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap: 12px;
-    padding: 24px;
+    gap: var(--spacer-xs);
+    padding: var(--spacer-base);
 }
 .product-cart-item .name {
-    font-size: 18px;
-    margin: 0;
+    font-size: var(--h5-font-size);
+    margin: var(--spacer-none);
     width: 40%;
 }
 .product-cart-item .price {
-    font-size: 18px;
-    margin: 0;
+    font-size: var(--h5-font-size);
+    margin: var(--spacer-none);
     width: 30%;
     text-align: right;
 }
@@ -91,7 +98,7 @@ export default defineComponent({
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    gap: 12px;
+    gap: var(--spacer-xs);
     flex-grow: 1;
 }
 .product-cart-item .amount .quantity {

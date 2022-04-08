@@ -32,10 +32,8 @@ export default defineComponent({
 </script>
 <style>
 .s-header {
-    padding: 12px;
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-        rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-        rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;
+    padding: var(--spacer-xs) var(--spacer-sm);
+    box-shadow: var(--box-shadow);
 }
 .s-header .s-header-wrapper {
     display: flex;
@@ -48,7 +46,7 @@ export default defineComponent({
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    gap: 8px;
+    gap: var(--spacer-sm);
     white-space: nowrap;
 }
 </style>

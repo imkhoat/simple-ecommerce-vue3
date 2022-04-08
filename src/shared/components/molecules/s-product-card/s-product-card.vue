@@ -79,48 +79,46 @@ export default defineComponent({
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    gap: 12px;
+    gap: var(--spacer-xs);
     overflow: hidden;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-        rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-        rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;
+    background-color: var(--c-card);
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--box-shadow);
 }
 .s-product-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    gap: 8px;
+    gap: var(--spacer-xs);
 }
 .s-product-card .gallery {
     height: 400px;
 }
 .s-product-card .content {
-    padding: 24px;
+    padding: var(--spacer-base);
 }
 .s-product-card .info .title {
-    font-size: 18px;
+    font-size: var(--h5-font-size);
     line-height: 18px;
-    padding: 0;
-    margin: 0;
-    margin-bottom: 12px;
-    color: #111872;
+    padding: var(--spacer-none);
+    margin: var(--spacer-none);
+    margin-bottom: var(--spacer-xs);
+    color: var(--c-text);
     max-height: calc(var(--lh) * var(3));
     text-overflow: ellipsis;
     overflow: hidden;
 }
 .s-product-card .info .description {
-    font-size: 16px;
+    font-size: var(--font-size--base);
     line-height: 16px;
     max-height: calc(var(--lh) * var(3));
     text-overflow: ellipsis;
     overflow: hidden;
-    padding: 0;
-    margin: 0;
-    margin-bottom: 12px;
-    color: #6b7280;
+    padding: var(--spacer-none);
+    margin: var(--spacer-none);
+    margin-bottom: var(--spacer-base);
+    color: var(--c-subtext);
 }
 .s-product-card .actions {
     display: flex;
@@ -128,7 +126,7 @@ export default defineComponent({
     justify-content: center;
     align-items: center;
 
-    gap: 8px;
+    gap: var(--spacer-xs);
 }
 .s-product-card .actions .action {
     flex-grow: 1;

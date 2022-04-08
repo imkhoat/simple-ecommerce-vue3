@@ -1,5 +1,6 @@
 @import "../helpers/breakpoints";
 html {
+  --spacer-none: 0;
   --spacer-2xs: 0.25rem; // 4px
   --spacer-xs: 0.5rem; // 8px
   --spacer-sm: 1rem; // 16px
@@ -8,4 +9,6 @@ html {
   --spacer-xl: 2.5rem; // 40px
   --spacer-2xl: 5rem; // 80px
   --spacer-3xl: 10rem; // 160px
+  --border-radius-base: 8px;
+  --border-radius-round: 9999px;
 }
