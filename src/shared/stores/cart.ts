@@ -1,12 +1,13 @@
 import { defineStore } from "pinia";
+import { useLocalStorage } from "@vueuse/core";
 import { CartItem } from "../types/category";
 
 export const useCartStore = defineStore("cart", {
   state: () => {
-    return { cart: [] as CartItem[] };
+    return { cart: useLocalStorage("CartStore", [] as CartItem[]) };
   },
   getters: {
-    pickupItems: (state) => state.cart,
+    items: (state) => state.cart,
     totalAmount: (state) => {
       return state.cart.reduce((previousValue, currentValue) => {
         const quantity = currentValue?.quantity as number;
@@ -48,8 +49,20 @@ export const useCartStore = defineStore("cart", {
       if (targetIndex != -1) {
         const currentQuantity = this.cart[targetIndex].quantity as number;
         this.cart[targetIndex].quantity = currentQuantity - 1;
+
+        if (this.cart[targetIndex].quantity === 0) {
+          this.removeItem(this.cart[targetIndex]);
+        }
       } else {
         this.cart.push(payload);
+      }
+    },
+    removeItem(payload: CartItem) {
+      const targetIndex = this.cart.findIndex(
+        (item) => item.product.code === payload.product.code
+      );
+      if (targetIndex > -1) {
+        this.cart.splice(targetIndex, 1);
       }
     },
   },

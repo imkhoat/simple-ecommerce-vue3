@@ -3,7 +3,7 @@
         <h6 class="name">{{ productName }}</h6>
         <div class="amount">
             <s-button :round="true" :outline="true" @click="onIncreaseQuantity">+</s-button>
-            <s-textbox class="quantity" disabled v-model="quantity"></s-textbox>
+            <s-textbox class="quantity" disabled="true" v-model="quantity"></s-textbox>
             <s-button :round="true" :outline="true" @click="onDecreaseQuantity">-</s-button>
         </div>
         <strong class="price">{{ totalPriceByText }}</strong>
@@ -30,10 +30,13 @@ export default defineComponent({
     },
     setup(props) {
         const cart = useCartStore()
-        const quantity = ref<number>(props.item?.quantity as number)
 
         const productName = computed(() => {
             return props.item?.product.title
+        })
+
+        const quantity = computed(()=>{
+            return props.item?.quantity
         })
 
         const totalPrice = computed(() => {

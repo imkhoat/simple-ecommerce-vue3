@@ -1,38 +1,50 @@
 <template>
     <div class="page-cart">
-        <div class="card">
+        <div v-if="totalAmount > 0" class="card">
             <div class="items">
                 <product-cart-item
                     :item="product"
                     class="item"
-                    v-for="(product, index) in products"
+                    v-for="(product, index) in items"
                     :key="index + 'page-cart-item'"
                 ></product-cart-item>
             </div>
             <div class="amount">{{ totalAmountByText }}</div>
         </div>
+        <div v-else class="empty">
+            <p class="notice">You have no items in cart</p>
+            <s-button :outline="true" @click="backToCategories">Get one</s-button>
+        </div>
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref, computed } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { useCartStore } from '../../../shared/stores/cart'
+import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
 
 import ProductCartItem from '../components/product-cart-item.vue'
+import SButton from '../../../shared/components/atoms/s-button/s-button.vue'
 export default defineComponent({
     components: {
         ProductCartItem,
+        SButton
     },
     setup() {
         const cart = useCartStore()
+        const router = useRouter()
 
-        const products = cart.pickupItems
-        const totalAmount = cart.totalAmount
+        const { totalAmount, items } = storeToRefs(cart)
 
         const totalAmountByText = computed(() => {
-            return (new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'USD' }).format(totalAmount))
+            return (new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'USD' }).format(totalAmount.value))
         })
 
-        return { products, totalAmount, totalAmountByText }
+        const backToCategories = () => {
+            router.push('/category')
+        }
+
+        return { items, totalAmount, totalAmountByText, backToCategories }
     }
 })
 </script>
@@ -45,7 +57,8 @@ export default defineComponent({
     padding: 24px;
     background-color: rgb(249, 250, 251);
 }
-.page-cart .card {
+.page-cart .card,
+.page-cart .empty {
     width: 550px;
     border-radius: 8px;
     background-color: #fff;
@@ -64,6 +77,17 @@ export default defineComponent({
     text-align: right;
     padding: 24px;
     font-size: 24px;
+    font-weight: bold;
+}
+.page-cart .empty {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.page-cart .empty .notice {
+    font-size: 16px;
     font-weight: bold;
 }
 </style>
