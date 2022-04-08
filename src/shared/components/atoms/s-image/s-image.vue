@@ -1,12 +1,16 @@
 <template>
     <div class="s-image" :style="`background-image: url(${src});`" />
 </template>
-<script setup lang="ts">
-const props = defineProps({
-    src: {
-        type: String,
-        required: true,
-    },
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+    props: {
+        src: {
+            type: String,
+            required: true,
+        },
+    }
 })
 </script>
 <style>

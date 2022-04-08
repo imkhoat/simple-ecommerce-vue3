@@ -1,15 +1,15 @@
 import { expect, test } from "vitest";
 import { mount } from "@vue/test-utils";
-import SButton from "./s-button.vue";
+import SHeader from "./s-header.vue";
 
-test("Mount button component", async () => {
-  expect(SButton).toBeTruthy();
+test("Mount header component", async () => {
+  expect(SHeader).toBeTruthy();
 
-  const wrapper = mount(SButton, {
+  const wrapper = mount(SHeader, {
     props: {
       round: true,
     },
   });
 
-  expect(wrapper.classes("s-button")).toBe(true);
+  expect(wrapper.classes("s-header")).toBe(true);
 });

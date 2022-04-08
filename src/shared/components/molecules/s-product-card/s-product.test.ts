@@ -1,15 +1,15 @@
 import { expect, test } from "vitest";
 import { mount } from "@vue/test-utils";
-import SButton from "./s-button.vue";
+import SProductCard from "./s-product-card.vue";
 
-test("Mount button component", async () => {
-  expect(SButton).toBeTruthy();
+test("Mount product cart component", async () => {
+  expect(SProductCard).toBeTruthy();
 
-  const wrapper = mount(SButton, {
+  const wrapper = mount(SProductCard, {
     props: {
       round: true,
     },
   });
 
-  expect(wrapper.classes("s-button")).toBe(true);
+  expect(wrapper.classes("s-product-card")).toBe(true);
 });

@@ -1,15 +1,15 @@
 import { expect, test } from "vitest";
 import { mount } from "@vue/test-utils";
-import SButton from "./s-button.vue";
+import SImage from "./s-image.vue";
 
-test("Mount button component", async () => {
-  expect(SButton).toBeTruthy();
+test("Mount image component", async () => {
+  expect(SImage).toBeTruthy();
 
-  const wrapper = mount(SButton, {
+  const wrapper = mount(SImage, {
     props: {
       round: true,
     },
   });
 
-  expect(wrapper.classes("s-button")).toBe(true);
+  expect(wrapper.classes("s-image")).toBe(true);
 });

@@ -1,15 +1,15 @@
 import { expect, test } from "vitest";
 import { mount } from "@vue/test-utils";
-import SButton from "./s-button.vue";
+import STextbox from "./s-textbox.vue";
 
-test("Mount button component", async () => {
-  expect(SButton).toBeTruthy();
+test("Mount textbox component", async () => {
+  expect(STextbox).toBeTruthy();
 
-  const wrapper = mount(SButton, {
+  const wrapper = mount(STextbox, {
     props: {
       round: true,
     },
   });
 
-  expect(wrapper.classes("s-button")).toBe(true);
+  expect(wrapper.classes("s-textbox")).toBe(true);
 });
