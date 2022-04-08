@@ -1,6 +1,6 @@
 <template>
-    <div class="s-textbox">
-        <input :value="modelValue" @input="updateValue" />
+    <div class="s-textbox" :class="{ 'disabled': disabled }">
+        <input :value="modelValue" :disabled="disabled" @input="updateValue" />
     </div>
 </template>
 <script lang="ts">
@@ -12,6 +12,10 @@ export default defineComponent({
             type: [String, Number],
             required: true,
         },
+        disabled: {
+            type: Boolean,
+            default: false
+        }
     },
     emits: ['update:modelValue'],
     setup(props, { emit }) {
@@ -38,6 +42,10 @@ export default defineComponent({
     background-color: #eef2ff;
     border: 1px solid #0062d6;
 }
+.s-textbox.disabled:hover {
+    background-color: #fff;
+    border: 1px solid rgb(229, 231, 235);
+}
 .s-textbox input {
     border: none;
     height: 28px;
@@ -47,6 +55,11 @@ export default defineComponent({
     font-weight: bold;
     text-align: center;
     color: #111827;
+}
+.s-textbox input:disabled,
+.s-textbox input:disabled:hover,
+.s-textbox.disabled:hover input {
+    background-color: #fff;
 }
 .s-textbox:hover input {
     background-color: #eef2ff;
