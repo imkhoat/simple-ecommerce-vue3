@@ -6,21 +6,28 @@
         <slot />
     </router-link>
 </template>
-<script setup lang="ts">
-import { computed } from 'vue'
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
 
-const props = defineProps({
-    link: {
-        type: [String, Object],
-        required: true,
+export default defineComponent({
+    props: {
+        link: {
+            type: [String, Object],
+            required: true,
+        },
     },
-})
+    setup(props) {
+        const isExternal = computed(() => {
+            return (typeof props.link === "string" && props.link.startsWith('http'));
+        })
+        const linkUrl = computed(() => {
+            return props.link;
+        })
 
-const isExternal = computed(() => {
-    return (typeof props.link === "string" && props.link.startsWith('http'));
-})
-const linkUrl = computed(() => {
-    return props.link;
+        return { isExternal, linkUrl }
+    }
+
+
 })
 </script>
 <style>

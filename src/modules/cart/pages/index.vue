@@ -1,6 +1,6 @@
 <template>
     <div class="page-cart">
-        <div v-if="totalAmount > 0" class="card">
+        <div v-if="isEmpty" class="card">
             <div class="items">
                 <product-cart-item
                     :item="product"
@@ -36,6 +36,10 @@ export default defineComponent({
 
         const { totalAmount, items } = storeToRefs(cart)
 
+        const isEmpty = computed(() => {
+            return items.value.length > 0
+        })
+
         const totalAmountByText = computed(() => {
             return (new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'USD' }).format(totalAmount.value))
         })
@@ -44,7 +48,7 @@ export default defineComponent({
             router.push('/category')
         }
 
-        return { items, totalAmount, totalAmountByText, backToCategories }
+        return { items, totalAmount, isEmpty, totalAmountByText, backToCategories }
     }
 })
 </script>
