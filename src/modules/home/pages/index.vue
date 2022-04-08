@@ -1,12 +1,12 @@
 <template>
     <div class="page-home">
         <div class="categories">
-            <s-category-card
+            <s-product-card
                 class="item"
                 v-for="(product, index) in products"
                 :key="index + '_category-product'"
                 :item="product"
-            ></s-category-card>
+            ></s-product-card>
         </div>
     </div>
 </template>
@@ -15,11 +15,11 @@ import { defineComponent, reactive } from 'vue'
 import { ProductItem } from '../../../shared/types/category'
 import { useProduct } from '../../../shared/composables/useProduct'
 
-import SCategoryCard from '../../../shared/components/molecules/s-category-card/s-category-card.vue'
+import SProductCard from '../../../shared/components/molecules/s-product-card/s-product-card.vue'
 
 export default defineComponent({
     components: {
-        SCategoryCard,
+        SProductCard,
     },
     setup() {
         const { getProducts } = useProduct()

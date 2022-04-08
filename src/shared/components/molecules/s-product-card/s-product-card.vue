@@ -1,5 +1,5 @@
 <template>
-    <s-link :link="productUrl" class="s-category-card">
+    <s-link :link="productUrl" class="s-product-card">
         <div class="gallery">
             <s-image :src="productImage"></s-image>
         </div>
@@ -23,11 +23,12 @@
 import SImage from '../../atoms/s-image/s-image.vue'
 import SButton from '../../atoms/s-button/s-button.vue'
 import SLink from '../../atoms/s-link/s-link.vue'
-import { ProductItem } from '../../../../shared/types/category'
+import { ProductItem } from '../../../types/category'
 
 
 import { computed, defineComponent, PropType } from 'vue'
 import { useRouter } from 'vue-router'
+import { useCartStore } from '../../../stores/cart'
 export default defineComponent({
     props: {
         item: {
@@ -39,6 +40,7 @@ export default defineComponent({
     },
     setup(props) {
         const router = useRouter()
+        const cart = useCartStore()
 
         const productImage = computed(() => {
             return props.item?.images[0]!
@@ -61,7 +63,10 @@ export default defineComponent({
         }
 
         const onAddToCart = () => {
-            console.log('DUDU')
+            cart.addToCart({
+                product: props.item as ProductItem,
+                quantity: 1
+            })
         }
 
         return { productImage, productTitle, productDescription, productUrl, onShowMoreInfo, onAddToCart }
@@ -69,7 +74,7 @@ export default defineComponent({
 })
 </script>
 <style>
-.s-category-card {
+.s-product-card {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -82,20 +87,20 @@ export default defineComponent({
         rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
         rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;
 }
-.s-category-card {
+.s-product-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
     gap: 8px;
 }
-.s-category-card .gallery {
+.s-product-card .gallery {
     height: 400px;
 }
-.s-category-card .content {
+.s-product-card .content {
     padding: 24px;
 }
-.s-category-card .info .title {
+.s-product-card .info .title {
     font-size: 18px;
     line-height: 18px;
     padding: 0;
@@ -106,7 +111,7 @@ export default defineComponent({
     text-overflow: ellipsis;
     overflow: hidden;
 }
-.s-category-card .info .description {
+.s-product-card .info .description {
     font-size: 16px;
     line-height: 16px;
     max-height: calc(var(--lh) * var(3));
@@ -117,7 +122,7 @@ export default defineComponent({
     margin-bottom: 12px;
     color: #6b7280;
 }
-.s-category-card .actions {
+.s-product-card .actions {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -125,7 +130,7 @@ export default defineComponent({
 
     gap: 8px;
 }
-.s-category-card .actions .action {
+.s-product-card .actions .action {
     flex-grow: 1;
 }
 </style>
