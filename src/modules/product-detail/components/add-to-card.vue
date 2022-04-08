@@ -1,9 +1,7 @@
 <template>
     <div class="add-to-card">
         <div class="amount">
-            <s-button :round="true" :outline="true" @click="onIncreaseQuantity">+</s-button>
-            <s-textbox class="quantity" v-model="quantity"></s-textbox>
-            <s-button :round="true" :outline="true" @click="onDecreaseQuantity">-</s-button>
+            <s-quantity-control :quantity="quantity" @increase="onIncreaseQuantity" @decrease="onDecreaseQuantity"></s-quantity-control>
         </div>
         <div class="cart">
             <s-button @click="onAddToCart">Add to cart</s-button>
@@ -16,7 +14,7 @@ import { useCartStore } from '../../../shared/stores/cart'
 import { ProductItem } from '../../../shared/types/category'
 
 import SButton from '../../../shared/components/atoms/s-button/s-button.vue'
-import STextbox from '../../../shared/components/atoms/s-textbox/s-textbox.vue'
+import SQuantityControl from '../../../shared/components/molecules/s-quantity-control/s-quantity-control.vue'
 
 export default defineComponent({
     props: {
@@ -26,7 +24,7 @@ export default defineComponent({
     },
     components: {
         SButton,
-        STextbox,
+        SQuantityControl,
     },
     setup(props) {
         const cart = useCartStore()

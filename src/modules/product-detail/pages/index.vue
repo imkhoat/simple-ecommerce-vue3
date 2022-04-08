@@ -40,11 +40,11 @@
 import { defineComponent, reactive, ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
-import SImage from '../../../shared/components/atoms/s-image/s-image.vue'
-import AddToCard from '../components/add-to-card.vue'
-
 import { useProduct } from '../../../shared/composables/useProduct'
 import { ProductItem } from '../../../shared/types/category'
+
+import SImage from '../../../shared/components/atoms/s-image/s-image.vue'
+import AddToCard from '../components/add-to-card.vue'
 
 export default defineComponent({
     components: {

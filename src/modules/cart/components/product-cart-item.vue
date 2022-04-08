@@ -2,22 +2,19 @@
     <div class="product-cart-item">
         <h6 class="name">{{ productName }}</h6>
         <div class="amount">
-            <s-button :round="true" :outline="true" @click="onIncreaseQuantity">+</s-button>
-            <s-textbox class="quantity" disabled="true" v-model="quantity"></s-textbox>
-            <s-button :round="true" :outline="true" @click="onDecreaseQuantity">-</s-button>
+            <s-quantity-control :quantity="quantity" @increase="onIncreaseQuantity" @decrease="onDecreaseQuantity"></s-quantity-control>
         </div>
         <strong class="price">{{ totalPriceByText }}</strong>
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue'
+import { defineComponent, PropType, computed } from 'vue'
 import { useCartStore } from '../../../shared/stores/cart'
 import { CartItem } from '../../../shared/types/category'
 
 import SButton from '../../../shared/components/atoms/s-button/s-button.vue'
 import STextbox from '../../../shared/components/atoms/s-textbox/s-textbox.vue'
-import { computed } from '@vue/reactivity'
-
+import SQuantityControl from '../../../shared/components/molecules/s-quantity-control/s-quantity-control.vue'
 export default defineComponent({
     props: {
         item: {
@@ -26,7 +23,7 @@ export default defineComponent({
     },
     components: {
         SButton,
-        STextbox,
+        SQuantityControl
     },
     setup(props) {
         const cart = useCartStore()
@@ -35,8 +32,8 @@ export default defineComponent({
             return props.item?.product.title
         })
 
-        const quantity = computed(()=>{
-            return props.item?.quantity
+        const quantity = computed(() => {
+            return props.item?.quantity  as number
         })
 
         const totalPrice = computed(() => {
