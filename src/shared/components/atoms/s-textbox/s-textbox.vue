@@ -1,15 +1,28 @@
 <template>
     <div class="s-textbox">
-        <input />
+        <input :value="modelValue" @input="updateValue" />
     </div>
 </template>
-<script setup lang="ts">
+<script lang="ts">
+import { defineComponent } from 'vue'
 
-const props = defineProps({
-    value: {
-        type: [String, Object],
-        required: true,
+export default defineComponent({
+    props: {
+        modelValue: {
+            type: [String, Number],
+            required: true,
+        },
     },
+    emits: ['update:modelValue'],
+    setup(props, { emit }) {
+        const updateValue = (event) => {
+            emit('update:modelValue', event.target.value)
+        }
+
+        return { updateValue }
+    }
+
+
 })
 </script>
 <style>

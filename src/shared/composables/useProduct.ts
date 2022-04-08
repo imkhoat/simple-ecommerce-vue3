@@ -1,27 +1,29 @@
+import { ProductItem } from "../types/category";
+
 export function useProduct() {
   // Replace with backend api call
-  const products = [
+  const products: ProductItem[] = [
     {
       images: [
-        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+        "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/436821/item/goods_00_436821.jpg?width=1600&impolicy=quality_75",
       ],
-      title: "MEN Dry-EX Tank Top",
-      price: 291,
+      title: "KIDS Dry Pique Short Sleeve Polo Shirt",
+      price: 391,
       amount: 15,
-      code: "COL66",
+      code: "COL00",
       description:
-        "Incredibly quick-drying, smooth, and feels fresh. The perfect fit for every situation with carefully selected coloring.",
+        "Feels silky and refreshing. Classic item that is simple and versatile.",
     },
     {
       images: [
-        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+        "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/444755/item/vngoods_66_444755.jpg?width=1600&impolicy=quality_75",
       ],
-      title: "MEN Striped Short Sleeve T-Shirt",
-      price: 489,
+      title: "MEN Unsodo Short Sleeve Shirt",
+      price: 784,
       amount: 10,
       code: "COL01",
       description:
-        "A relaxed T-shirt with bold stripes for a signature JWA style.",
+        "Inspired by the iconic designs of Kamisaka Sekka. Relaxed cut for a laid-back style.",
     },
     {
       images: [
@@ -32,7 +34,7 @@ export function useProduct() {
       amount: 10,
       code: "COL17",
       description:
-        "Featuring a Spider-Man motif. With an iconic spider design on the back.",
+        "Featuring a Spider-Man motif. With an iconic spider design on the back. <br/> The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for true comfort and a dependable fit. They are hand cut and sewn locally, with a special dye technique that gives each tee it's own look.",
     },
     {
       images: [
@@ -80,7 +82,7 @@ export function useProduct() {
     },
   ];
 
-  const getProductById = (code: String) => {
+  const getProductById = (code: String): ProductItem | undefined => {
     return products.find((item) => item.code === code);
   };
 

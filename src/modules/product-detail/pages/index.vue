@@ -9,23 +9,11 @@
                 <strong class="price">{{ productPriceText }}</strong>
             </div>
             <div class="action">
-                <div class="amount">
-                    <s-button :round="true" :outline="true">+</s-button>
-                    <s-textbox class="quantity" v-model="quantity"></s-textbox>
-                    <s-button :round="true" :outline="true">-</s-button>
-                </div>
-                <div class="cart">
-                    <s-button>Add to cart</s-button>
-                </div>
+                <add-to-card :product="product"></add-to-card>
             </div>
             <div class="description">
                 <p class="sub-title">Description</p>
-                <p>
-                    The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for
-                    true comfort and a dependable fit. They are hand cut and sewn locally, with a special dye technique
-                    that gives each tee it's own look.
-                </p>
-                <p>Looking to stock your closet? The Basic tee also comes in a 3-pack or 5-pack at a bundle discount.</p>
+                <div v-html="productDescription"></div>
             </div>
             <div class="description">
                 <p class="sub-title">Fabric & Care</p>
@@ -36,6 +24,15 @@
                     <li>Machine wash cold with similar colors</li>
                 </ul>
             </div>
+            <div class="description">
+                <p class="sub-title">Shipping</p>
+                <ul>
+                    <li>2 ~ 7 days shipping</li>
+                    <li>FAST Express service</li>
+                    <li>No addition fees</li>
+                    <li>Free to return</li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -44,8 +41,7 @@ import { defineComponent, reactive, ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 import SImage from '../../../shared/components/atoms/s-image/s-image.vue'
-import SButton from '../../../shared/components/atoms/s-button/s-button.vue'
-import STextbox from '../../../shared/components/atoms/s-textbox/s-textbox.vue'
+import AddToCard from '../components/add-to-card.vue'
 
 import { useProduct } from '../../../shared/composables/useProduct'
 import { ProductItem } from '../../../shared/types/category'
@@ -53,8 +49,7 @@ import { ProductItem } from '../../../shared/types/category'
 export default defineComponent({
     components: {
         SImage,
-        SButton,
-        STextbox
+        AddToCard
     },
     setup() {
         const { getProductById } = useProduct()
@@ -93,11 +88,11 @@ export default defineComponent({
 }
 .page-product-detail .image {
     min-width: 50vw;
-    min-height: 70vh;
+    min-height: 80vh;
     padding: 24px;
     border-radius: 8px;
 }
-.page-product-detail .image .s-image{
+.page-product-detail .image .s-image {
     border-radius: 8px;
 }
 .page-product-detail .info {
@@ -116,26 +111,6 @@ export default defineComponent({
 }
 .page-product-detail .title .price {
     font-size: 24px;
-}
-.page-product-detail .info .action {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    gap: 24px;
-}
-.page-product-detail .info .action .amount {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 12px;
-}
-.page-product-detail .info .action .amount .quantity {
-    width: 50px;
-}
-.page-product-detail .info .action .cart .s-button {
-    width: 100%;
 }
 .page-product-detail .info .description {
     color: #6b7280;
