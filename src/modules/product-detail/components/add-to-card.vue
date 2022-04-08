@@ -61,14 +61,14 @@ export default defineComponent({
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-    gap: 24px;
+    gap: var(--spacer-base);
 }
 .add-to-card .amount {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    gap: 12px;
+    gap: var(--spacer-xs);
 }
 .add-to-card .amount .quantity {
     width: 50px;

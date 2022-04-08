@@ -25,6 +25,7 @@ import { useRouter } from 'vue-router'
 
 import ProductCartItem from '../components/product-cart-item.vue'
 import SButton from '../../../shared/components/atoms/s-button/s-button.vue'
+import { usePrice } from '../../../shared/composables/usePrice'
 export default defineComponent({
     components: {
         ProductCartItem,
@@ -33,6 +34,7 @@ export default defineComponent({
     setup() {
         const cart = useCartStore()
         const router = useRouter()
+        const { formatPrice } = usePrice()
 
         const { totalAmount, items } = storeToRefs(cart)
 
@@ -41,7 +43,7 @@ export default defineComponent({
         })
 
         const totalAmountByText = computed(() => {
-            return (new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'USD' }).format(totalAmount.value))
+            return formatPrice(totalAmount.value)
         })
 
         const backToCategories = () => {
@@ -58,40 +60,38 @@ export default defineComponent({
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 24px;
-    background-color: rgb(249, 250, 251);
+    padding: var(--spacer-base);
+    background-color: var(--c-body);
 }
 .page-cart .card,
 .page-cart .empty {
     width: 550px;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-        rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-        rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;
+    border-radius: var(--border-radius-base);
+    background-color: var(--c-card);
+    box-shadow: var(--box-shadow);
 }
 .page-cart .items {
     display: flex;
     flex-direction: column;
 }
 .page-cart .items .item {
-    border-bottom: 1px solid rgb(229, 231, 235);
+    border-bottom: 1px solid var(--c-border);
 }
 .page-cart .card .amount {
     text-align: right;
-    padding: 24px;
-    font-size: 24px;
+    padding: var(--spacer-base);
+    font-size: var(--h4-font-size);
     font-weight: bold;
 }
 .page-cart .empty {
-    padding: 24px;
+    padding: var(--spacer-base);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 .page-cart .empty .notice {
-    font-size: 16px;
+    font-size: var(--font-size--base);
     font-weight: bold;
 }
 </style>

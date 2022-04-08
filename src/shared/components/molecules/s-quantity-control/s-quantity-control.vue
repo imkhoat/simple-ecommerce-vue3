@@ -49,7 +49,7 @@ export default defineComponent({
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    gap: 12px;
+    gap: var(--spacer-xs);
     flex-grow: 1;
 }
 .s-quantity-control .quantity {

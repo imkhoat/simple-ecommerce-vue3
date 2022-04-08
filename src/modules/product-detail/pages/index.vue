@@ -45,6 +45,7 @@ import { ProductItem } from '../../../shared/types/category'
 
 import SImage from '../../../shared/components/atoms/s-image/s-image.vue'
 import AddToCard from '../components/add-to-card.vue'
+import { usePrice } from '../../../shared/composables/usePrice'
 
 export default defineComponent({
     components: {
@@ -52,8 +53,9 @@ export default defineComponent({
         AddToCard
     },
     setup() {
-        const { getProductById } = useProduct()
         const route = useRoute()
+        const { getProductById } = useProduct()
+        const { formatPrice } = usePrice()
 
         const quantity = ref(0)
 
@@ -69,7 +71,7 @@ export default defineComponent({
             return product.description
         })
         const productPriceText = computed(() => {
-            return `${product.price}$`
+            return formatPrice(product.price as number)
         })
         const productImage = computed(() => {
             return product.images[0]
@@ -89,34 +91,35 @@ export default defineComponent({
 .page-product-detail .image {
     min-width: 50vw;
     min-height: 80vh;
-    padding: 24px;
-    border-radius: 8px;
+    padding: var(--spacer-base);
+    border-radius: var(--border-radius-base);
 }
 .page-product-detail .image .s-image {
-    border-radius: 8px;
+    border-radius: var(--border-radius-base);
 }
 .page-product-detail .info {
-    padding: 24px;
+    padding: var(--spacer-base);
 }
 .page-product-detail .title {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
+    align-items: flex-start;
+    margin-bottom: var(--spacer-base);
 }
 .page-product-detail .title .name {
-    font-size: 24px;
-    margin: 0;
+    font-size: var(--h4-font-size);
+    margin: var(--spacer-none);
+    padding-right: var(--spacer-base);
 }
 .page-product-detail .title .price {
-    font-size: 24px;
+    font-size: var(--h4-font-size);
 }
 .page-product-detail .info .description {
-    color: #6b7280;
+    color: var(--c-subtext);
 }
 .page-product-detail .info .description .sub-title {
     font-weight: 600;
-    color: #111872;
+    color: var(--c-text);
 }
 </style>

@@ -31,15 +31,15 @@ export default defineComponent({
 </script>
 <style>
 .page-home {
-    padding: 24px;
-    background-color: rgb(249, 250, 251);
+    padding: var(--spacer-base);
+    background-color: var(--c-body);
 }
 .page-home .categories {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    gap: var(--spacer-base);
     white-space: nowrap;
-    margin-top: 24px;
+    margin-top: var(--spacer-base);
 }
 .page-home .categories .item {
     flex-shrink: 1;

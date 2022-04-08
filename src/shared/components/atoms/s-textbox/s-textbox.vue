@@ -32,36 +32,36 @@ export default defineComponent({
 <style>
 .s-textbox {
     text-decoration: none;
-    border: 1px solid rgb(229, 231, 235);
-    border-radius: 8px;
-    padding: 4px;
+    border: 1px solid var(--c-border);
+    border-radius: var(--border-radius-base);
+    padding: var(--spacer-2xs);
     height: 32px;
     overflow: hidden;
 }
 .s-textbox:hover {
-    background-color: #eef2ff;
-    border: 1px solid #0062d6;
+    background-color: var(--c-secondary);
+    border: 1px solid var(--c-primary);
 }
 .s-textbox.disabled:hover {
-    background-color: #fff;
-    border: 1px solid rgb(229, 231, 235);
+    background-color: var(--c-card);
+    border: 1px solid var(--c-border);
 }
 .s-textbox input {
     border: none;
     height: 28px;
     width: calc(100% - 8px);
     outline: none;
-    font-size: 16px;
+    font-size: var(--font-size--base);
     font-weight: bold;
     text-align: center;
-    color: #111827;
+    color: var(--c-text);
 }
 .s-textbox input:disabled,
 .s-textbox input:disabled:hover,
 .s-textbox.disabled:hover input {
-    background-color: #fff;
+    background-color: var(--_c-light-secondary);
 }
 .s-textbox:hover input {
-    background-color: #eef2ff;
+    background-color: var(--c-secondary);
 }
 </style>

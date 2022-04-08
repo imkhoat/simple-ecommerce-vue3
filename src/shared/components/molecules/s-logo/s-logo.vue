@@ -19,6 +19,6 @@ export default defineComponent({
 .s-logo .logo img{
     height: 48px;
     width: 48px;
-    fill: #0064fa;
+    fill: var(--c-primary);
 }
 </style>
