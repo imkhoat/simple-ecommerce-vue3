@@ -81,7 +81,18 @@ export default defineComponent({
     line-height: 16px;
     padding: 8px 16px;
 }
-.s-button[round="true"] {
+.s-button[round="true"][size="medium"] {
+    min-width: 36px;
+    border-radius: 100px;
+    padding: 10px;
+}
+.s-button[round="true"][size="small"] {
+    min-width: 32px;
+    border-radius: 100px;
+    padding: 8px;
+}
+.s-button[round="true"][size="base"] {
+    min-width: 42px;
     border-radius: 100px;
 }
 </style>
